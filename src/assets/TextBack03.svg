@@ -1,0 +1,27 @@
+<svg width="182" height="174" viewBox="0 0 182 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M43.6309 135.016L58.4302 126.625M139.143 135.016L124.344 126.625" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M91.3833 47.7786V67.1404" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.0605 21.6869L91.3819 13L106.703 21.6869L106.696 21.6984V39.093L91.3834 47.78L76.0698 39.093V21.7024L76.0605 21.6869Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.75 134.907L29.0715 126.22L44.393 134.907L44.386 134.918V152.313L29.0726 161L13.7593 152.313V134.922L13.75 134.907Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M138.357 134.907L153.678 126.22L169 134.907L168.993 134.918V152.313L153.68 161L138.366 152.313V134.922L138.357 134.907Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M57.2896 86.4683L91.3791 67.1404L125.468 86.4683" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M91.3833 144.523L57.312 125.195V86.468L91.3833 105.796V144.523Z" stroke="#4E6851" stroke-width="10" stroke-linejoin="round"/>
+<path d="M91.3833 144.523L125.454 125.195V86.468L91.3833 105.796V144.523Z" stroke="#4E6851" stroke-width="10" stroke-linejoin="round"/>
+<g filter="url(#filter0_f_125_640)">
+<path d="M43.6309 135.016L58.4302 126.625M139.143 135.016L124.344 126.625" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M91.3833 47.7786V67.1404" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.0605 21.6869L91.3819 13L106.703 21.6869L106.696 21.6984V39.093L91.3834 47.78L76.0698 39.093V21.7024L76.0605 21.6869Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.75 134.907L29.0715 126.22L44.393 134.907L44.386 134.918V152.313L29.0726 161L13.7593 152.313V134.922L13.75 134.907Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M138.357 134.907L153.678 126.22L169 134.907L168.993 134.918V152.313L153.68 161L138.366 152.313V134.922L138.357 134.907Z" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M57.2896 86.4683L91.3791 67.1404L125.468 86.4683" stroke="#4E6851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M91.3833 144.523L57.312 125.195V86.468L91.3833 105.796V144.523Z" stroke="#4E6851" stroke-width="10" stroke-linejoin="round"/>
+<path d="M91.3833 144.523L125.454 125.195V86.468L91.3833 105.796V144.523Z" stroke="#4E6851" stroke-width="10" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_f_125_640" x="0.75" y="0" width="181.25" height="174" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_125_640"/>
+</filter>
+</defs>
+</svg>
