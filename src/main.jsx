@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './styles/normalize.scss'
 import './styles/colors.scss'
 import './styles/fonts.scss'
+import './styles/icon.scss'
 // import App from './components/tests/App.jsx'
-import Layout from "./components/main/Layout.jsx";
+import Layout from "./components/Layout.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

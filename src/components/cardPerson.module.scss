@@ -1,0 +1,9 @@
+.blob{
+  position: absolute;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+  z-index: -1;
+  filter: blur(50px);
+}

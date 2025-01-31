@@ -1,7 +1,14 @@
 *{
-  --icon-small: 60px;
-  --icon-medium: 136px;
+
+  --icon-s-w: clamp(30px, calc(60 / 1920 * 100vw), 70px);
+  --icon-m-w: clamp(86px, calc(136 / 1920 * 100vw), 136px);
+
+  
+
   --icon-large: 142px;
   --icon-xlarge: 223px;
   --icon-xxlarge: 260px;
+
+  --container-width: 100%; /* Ширина основного контейнера */
+  --max-container: calc(1920px - 2 * 240px); /* Максимальная ширина основного контейнера */
 }

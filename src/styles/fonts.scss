@@ -1,23 +1,33 @@
 @font-face {
-  font-family: 'ALS Gorizont Variable', sans-serif;
+  font-family: 'bold-font';
   src: url('./fonts/alsgorizontvariable.eot'); /* IE 9 Compatibility Mode */
   src: url('./fonts/alsgorizontvariable.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
   url('./fonts/alsgorizontvariable.woff2') format('woff2'), /* Super Modern Browsers */
   url('./fonts/alsgorizontvariable.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
   url('./fonts/alsgorizontvariable.ttf') format('truetype'), /* Safari, Android, iOS */
   url('./fonts/alsgorizontvariable.svg#alsgorizontvariable') format('svg'); /* Chrome < 4, Legacy iOS */
-  font-weight: 400 900;
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'regular-font';
+  src: url('./fonts/alsgorizontvariable.eot'); /* IE 9 Compatibility Mode */
+  src: url('./fonts/alsgorizontvariable.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+  url('./fonts/alsgorizontvariable.woff2') format('woff2'), /* Super Modern Browsers */
+  url('./fonts/alsgorizontvariable.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+  url('./fonts/alsgorizontvariable.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('./fonts/alsgorizontvariable.svg#alsgorizontvariable') format('svg'); /* Chrome < 4, Legacy iOS */
+  font-weight: 300;
 }
 
 *{
-  --font-heading-1: 900 64px/1 'ALS Gorizont Variable';
-  --font-heading-2: 900 56px/1 'ALS Gorizont Variable';
-  --font-heading-3: 900 48px/1 'ALS Gorizont Variable';
+  --font-heading-1: 900 clamp(56px, calc(64 / 1920 * 100vw), 96px)/1 bold-font;
+  --font-heading-2: 900 clamp(32px, calc(56 / 1920 * 100vw), 80px)/1 bold-font;
+  --font-heading-3: 900 clamp(32px, calc(48 / 1920 * 100vw), 72px)/1 bold-font;
 
-  --font-text-1: 400 48px/1 'ALS Gorizont Variable';
-  --font-text-2: 400 40px/1 'ALS Gorizont Variable';
-  --font-text-3: 400 36px/1 'ALS Gorizont Variable';
-  --font-text-4: 400 32px/1 'ALS Gorizont Variable';
-  --font-text-5: 400 24px/1 'ALS Gorizont Variable';
-  --font-text-6: 400 20px/1 'ALS Gorizont Variable';
+  --font-text-1: 300 clamp(36px, calc(48 / 1920 * 100vw), 64px)/1 regular-font;
+  --font-text-2: 300 clamp(32px, calc(40 / 1920 * 100vw), 52px)/1 regular-font;
+  --font-text-3: 300 clamp(28px, calc(36 / 1920 * 100vw), 48px)/1 regular-font;
+  --font-text-4: 300 clamp(24px, calc(32 / 1920 * 100vw), 40px)/1 regular-font;
+  --font-text-5: 300 clamp(16px, calc(24 / 1920 * 100vw), 32px)/1 regular-font;
+  --font-text-6: 300 clamp(14px, calc(20 / 1920 * 100vw), 28px)/1 regular-font;
 }

@@ -1,9 +1,15 @@
 import style from './layout.module.scss'
 import clsx from "clsx";
 import {useEffect, useState} from "react";
+import Blob from "./Blob.jsx";
+import Marquee from "./Marquee.jsx";
+import CardFAQ from "./CardFAQ.jsx";
 
 const dateStart = new Date('2025-02-24T00:00:00');
+const anonsDate = new Date('2025-01-03T00:00:00');
 function Layout() {
+
+
     const calculateTimeBeforeStart = () => {
         const difference = +dateStart - +new Date();
         let timeBeforeStart = {};
@@ -17,72 +23,119 @@ function Layout() {
         }
         return timeBeforeStart;
     };
-    const [beforeStart, setBeforeStart] = useState(calculateTimeBeforeStart());
+    function getCountOfProgressItems() {
+        const difference = +dateStart - +anonsDate;
+        const now = +new Date() - +anonsDate;
 
+        if (difference <= 0) {
+            return 30;
+        } else {
+            return Math.floor(now / (difference / 30));
+        }
+    }
+    const [beforeStart, setBeforeStart] = useState(calculateTimeBeforeStart());
+    const [progressItems, setProgressItems] = useState([]);
+    let count = progressItems.length;
     useEffect(() => {
-        const interval = setInterval(() => {
+
+        console.log(count);
+        function smooth (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', smooth);
+        });
+        const interval1 = setInterval(() => {
+            if (count < getCountOfProgressItems()) {
+                console.log(count);
+                count ++;
+                setProgressItems(prev => [...prev, 0]);
+            }
+        }, 500);
+        const interval2 = setInterval(() => {
             setBeforeStart(calculateTimeBeforeStart());
         }, 1000);
-        return () => clearInterval(interval);
-    }, [beforeStart]);
+        return () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.removeEventListener('click', smooth);
+            });
+            clearInterval(interval1);
+            clearInterval(interval2);
+        }
+    }, [])
 
 
     return (
-        <>
+        <div className={style.layout}>
+            <header className={style.header}>
+                <Blob className={style.blobRight}/>
+                <Blob className={style.blobLeft}/>
+                <Blob className={style.blobTop}/>
 
-            <header>
-                <div className={style.blob}>
-                </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="#">О проекте</a>
+                <nav className={style.nav}>
+                    <ul className={style.menu}>
+                        <li className={style.menuItem}>
+                            <a href="#description" className={style.link}>О проекте</a>
                         </li>
-                        <li>
-                            <a href="#">Этапы проведения</a>
+                        <li className={style.menuItem}>
+                            <a href="#steps" className={style.link}>Этапы проведения</a>
                         </li>
-                        <li>
-                            <a href="#">Участвовать</a>
+                        <li className={style.menuItem}>
+                            {/* todo real link*/}
+                            <a href={"#"} className={style.link}>Участвовать</a>
                         </li>
-                        <li>
-                            <a href="#">FAQ</a>
+                        <li className={style.menuItem}>
+                            <a href="#faq" className={style.link}>FAQ</a>
                         </li>
                     </ul>
-                    <input type={"checkbox"} id={"menu-toggle"}/>
-                    <label htmlFor={"menu-toggle"} className={clsx(style.menuToggle, style.menuIcon)}>
+                    <input type={"checkbox"} id={"toggle"} className={style.toggleCheckbox}/>
+                    <label htmlFor={"toggle"} className={clsx(style.menuToggle, style.menuIcon)}>
                         <span></span>
                     </label>
-                    <a>
-                        <img srcSet={new URL('/src/assets/VK Logo.svg', import.meta.url).href} alt={'VK'}/>
-                    </a>
-                    <a>
-                        <img srcSet={new URL('/src/assets/Telegram.svg', import.meta.url).href} alt={'Telegram'}/>
-                    </a>
+                    <div className={style.boxLink}>
+                        <a href={"#"} className={style.icon}>
+                            {/*todo real link*/}
+                            <img srcSet={new URL('/src/assets/VK Logo.svg', import.meta.url).href} alt={'VK'}/>
+                        </a>
+                        <a href={"#"} className={style.icon}>
+                            {/*todo real link*/}
+                            <img srcSet={new URL('/src/assets/Telegram.svg', import.meta.url).href} alt={'Telegram'}/>
+                        </a>
+                    </div>
                 </nav>
 
                 <div className={style.content}>
-                    <h1>Игровар</h1>
-                    <div className={style.progressbar}>До
-                        начала {beforeStart.days} дней {beforeStart.hours} часов {beforeStart.minutes} минут {beforeStart.seconds} секунд
+                    <h1 className={style.title}>Игровар</h1>
+                    <div className={style.progressbar}>
+                        {progressItems.map((_, index) => (
+                            <div key={index} className={style.progressItem}></div>
+                        ))}
+                        <div className={style.progressText}>
+                            <span>До начала </span>
+                            <span className={style.span}>{beforeStart.days}</span>
+                            <span> дней </span>
+                            <span className={style.span}>{beforeStart.hours}</span>
+                            <span> часов </span>
+                            <span className={style.span}>{beforeStart.minutes}</span>
+                            <span> минут </span>
+                            <span className={style.span}>{beforeStart.seconds}</span>
+                            <span> секунд</span>
+                        </div>
                     </div>
-                    <div className={style.runnings}>
-                        <img srcSet={new URL('/public/running1.svg', import.meta.url).href} alt={'running1'}/>
-                        <img srcSet={new URL('/public/running2.svg', import.meta.url).href} alt={'running2'}/>
-                        <img srcSet={new URL('/public/running3.svg', import.meta.url).href} alt={'running3'}/>
-                        <img srcSet={new URL('/public/running4.svg', import.meta.url).href} alt={'running4'}/>
-                        <img srcSet={new URL('/public/running5.svg', import.meta.url).href} alt={'running5'}/>
-                    </div>
+                    <Marquee/>
+
                 </div>
             </header>
 
-            <section className={style.section}>
-                <h2>Уникальность геймджема</h2>
+            <section className={style.section} id={"description"}>
+                <h2 className={clsx(style.title, style.title2)}>Уникальность геймджема</h2>
                 <div className={style.cards}>
                     <div className={style.card}>
                         <img srcSet={new URL('/public/card1.svg', import.meta.url).href} alt={'card1'}/>
                         <div className={style.text}>
                             Мероприятие,
-                            <span className={style.accent}>объединяющее оценку геймдизайн-документов,
+                            <span className={style.accentRed}>объединяющее оценку геймдизайн-документов,
                                 качества созданных игр и подходов к бизнес-планированию</span>
                             в игровой индустрии.
                         </div>
@@ -91,14 +144,14 @@ function Layout() {
                         <img srcSet={new URL('/public/card2.svg', import.meta.url).href} alt={'card2'}/>
                         <div className={style.text}>
                             Путем оценки и обратной связи от экспертов в индустрии игр
-                            <span className={style.accent}>участники смогут улучшить свои навыки разработки игр</span>
+                            <span className={style.accentRed}>участники смогут улучшить свои навыки разработки игр</span>
                             и получить ценный опыт для будущих проектов.
                         </div>
                     </div>
                     <div className={style.card}>
                         <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>
                         <div className={style.text}>
-                            <span className={style.accent}>Учитываются различные аспекты создания игр,</span>
+                            <span className={style.accentRed}>Учитываются различные аспекты создания игр,</span>
                             включая тщательную проработку концепции игры, креативного дизайна,
                             игровых механизмов, коммерческого потенциала проекта.
                         </div>
@@ -107,7 +160,7 @@ function Layout() {
                         <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>
                         <div className={style.text}>
                             Использование
-                            <span className={style.accent}>уникальной платформы</span>
+                            <span className={style.accentRed}>уникальной платформы</span>
                             на базе ВК.Плей и Skillbox
                         </div>
                     </div>
@@ -115,8 +168,9 @@ function Layout() {
             </section>
 
             <section className={style.section}>
-                <h2>Номинации геймджема</h2>
-                <div className={style.cards}>
+                <h2 className={style.title}>Номинации геймджема</h2>
+                <Blob className={style.blobRight}/>
+                <div className={clsx(style.cards, style.cardsWrap)}>
                     <div className={style.card}>
                         <img srcSet={new URL('/public/nomination1.svg', import.meta.url).href} alt={'nomination1'}/>
                         <h3>Лучший из лучших</h3>
@@ -141,7 +195,7 @@ function Layout() {
             </section>
 
             <section className={style.section}>
-                <h2><span className={style.accent}
+                <h2 className={style.title}><span className={style.accentRed}
                 >Эксперты</span> мероприятия</h2>
                 <div className={style.text}>
                     Люди, имеющие большой бэкграунд
@@ -151,7 +205,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -160,7 +214,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -168,7 +222,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -176,7 +230,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -184,9 +238,10 @@ function Layout() {
                 </div>
 
             </section>
-            <section className={style.section}>
-                <h2>Этапы проведения</h2>
-                <div className={style.cards}>
+            <section className={style.section} id={"steps"}>
+                <h2 className={style.title}>Этапы проведения</h2>
+                <Blob className={style.blobRight}/>
+                <div className={style.map}>
                     <div className={style.card}>
                         <div>10 февраля - 23 февраля</div>
                         <h3>Подготовка к геймджему</h3>
@@ -240,8 +295,9 @@ function Layout() {
                 </div>
             </section>
             <section className={style.section}>
-                <h2><span className={style.accent}
+                <h2 className={style.title}><span className={style.accentGreen}
                 >Спикеры</span> мероприятия</h2>
+                <Blob className={style.blobRight}/>
                 <div className={style.text}>
                     Простите, я не придумал текст к этим крутым чувакам
                 </div>
@@ -249,7 +305,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -258,7 +314,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -266,7 +322,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -274,7 +330,7 @@ function Layout() {
                     <div className={style.card}>
                         <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
                         <h3>
-                            <span className={style.accent}>Фамилия</span>
+                            <span className={style.accentRed}>Фамилия</span>
                             Имя
                         </h3>
                         <div className={style.text}>Должность/достижения</div>
@@ -282,29 +338,27 @@ function Layout() {
                 </div>
 
             </section>
-            <section className={style.section}>
-                <h2>Часто задаваемые вопросы</h2>
+            <section className={style.section} id={"faq"}>
+                <Blob className={style.blobRightFAQ}/>
+                <h2 className={style.title}>Часто задаваемые вопросы</h2>
                 <div className={style.text}>
                     Ознакомиться подробнее с порядком проведения
-                    мероприятия можно в <span className={style.accent}
-                >Положении о геймджеме</span></div>
+                    мероприятия можно в <a className={style.accentGreen} href={"#"}
+                >Положении о геймджеме</a></div>
 
-                <div className={style.cards}>
-                    <div className={style.card}>
-                        <h3>Как принять участие в геймджеме?</h3>
-                        <div className={style.text}>Краткий ответ на вопрос</div>
-                    </div>
-                    <div className={style.card}>
-                        <h3>Какие номинации есть на геймджеме?</h3>
-                        <div className={style.text}>Краткий ответ на вопрос</div>
-                    </div>
+                <div className={clsx(style.cards, style.cardsColumn)}>
+                    <CardFAQ question={"Как принять участие в геймджеме?"}
+                             answer={"Для участия в геймджеме необходимо зарегистрироваться на сайте и создать команду. После этого вы сможете приступить к разработке игры."}/>
+                    <CardFAQ question={"Какие номинации есть на геймджеме?"}
+                                answer={"Краткий ответ на вопрос"}/>
+
                 </div>
 
             </section>
             <footer className={style.footer}>
                 <div className={style.content}>
                     <div className={style.text}>
-                        Получи <span className={style.accent}>реальный опыт</span>разработки игры
+                        Получи <span className={style.accentRed}>реальный опыт</span>разработки игры
                     </div>
                     <ul className={style.list}>
                         <li>
@@ -314,7 +368,7 @@ function Layout() {
                             <a href={'#'}>Регламент геймджема</a>
                         </li>
                         <li>
-                            <a className={clsx(style.accent, style.link)}
+                            <a className={clsx(style.accentRed, style.link)}
                                href={'#'}>Зарегистрироваться</a>
                         </li>
                     </ul>
@@ -332,7 +386,7 @@ function Layout() {
             </footer>
 
 
-        </>
+        </div>
     )
 }
 
