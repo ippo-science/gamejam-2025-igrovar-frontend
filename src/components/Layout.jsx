@@ -4,10 +4,16 @@ import {useEffect, useState} from "react";
 import Blob from "./Blob.jsx";
 import Marquee from "./Marquee.jsx";
 import CardFAQ from "./CardFAQ.jsx";
-
+import CardPerson from "./CardPerson.jsx";
+import SliderPersons from "./SliderPersons.jsx";
+const api = import.meta.env.VITE_API_URL;
 const dateStart = new Date('2025-02-24T00:00:00');
 const anonsDate = new Date('2025-01-03T00:00:00');
 function Layout() {
+    const [experts, setExperts] = useState(null);
+    const [speakers, setSpeakers] = useState(null);
+
+
 
 
     const calculateTimeBeforeStart = () => {
@@ -38,7 +44,10 @@ function Layout() {
     let count = progressItems.length;
     useEffect(() => {
 
-        console.log(count);
+
+
+
+
         function smooth (e) {
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +57,7 @@ function Layout() {
         });
         const interval1 = setInterval(() => {
             if (count < getCountOfProgressItems()) {
-                console.log(count);
+                // console.log(count);
                 count ++;
                 setProgressItems(prev => [...prev, 0]);
             }
@@ -64,6 +73,23 @@ function Layout() {
             clearInterval(interval2);
         }
     }, [])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(api + '/main');
+                const data = await response.json();
+                setExperts(data.experts);
+                setSpeakers(data.speakers);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
+    }, []);
+
+
+
 
 
     return (
@@ -96,11 +122,11 @@ function Layout() {
                     <div className={style.boxLink}>
                         <a href={"#"} className={style.icon}>
                             {/*todo real link*/}
-                            <img srcSet={new URL('/src/assets/VK Logo.svg', import.meta.url).href} alt={'VK'}/>
+                            <img srcSet={new URL('/src/assets/logos/VK Logo.svg', import.meta.url).href} alt={'VK'}/>
                         </a>
                         <a href={"#"} className={style.icon}>
                             {/*todo real link*/}
-                            <img srcSet={new URL('/src/assets/Telegram.svg', import.meta.url).href} alt={'Telegram'}/>
+                            <img srcSet={new URL('/src/assets/logos/Telegram.svg', import.meta.url).href} alt={'Telegram'}/>
                         </a>
                     </div>
                 </nav>
@@ -115,12 +141,12 @@ function Layout() {
                             <span>До начала </span>
                             <span className={style.span}>{beforeStart.days}</span>
                             <span> дней </span>
-                            <span className={style.span}>{beforeStart.hours}</span>
-                            <span> часов </span>
-                            <span className={style.span}>{beforeStart.minutes}</span>
-                            <span> минут </span>
-                            <span className={style.span}>{beforeStart.seconds}</span>
-                            <span> секунд</span>
+                            <span className={style.span}>{beforeStart.hours.toString().padStart(2, '0')}</span>
+                            <span>:</span>
+                            <span className={style.span}>{beforeStart.minutes.toString().padStart(2, '0')}</span>
+                            <span>:</span>
+                            <span className={style.span}>{beforeStart.seconds.toString().padStart(2, '0')}</span>
+
                         </div>
                     </div>
                     <Marquee/>
@@ -140,36 +166,36 @@ function Layout() {
                             в игровой индустрии.
                         </div>
                     </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/card2.svg', import.meta.url).href} alt={'card2'}/>
-                        <div className={style.text}>
-                            Путем оценки и обратной связи от экспертов в индустрии игр
-                            <span className={style.accentRed}>участники смогут улучшить свои навыки разработки игр</span>
-                            и получить ценный опыт для будущих проектов.
-                        </div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>
-                        <div className={style.text}>
-                            <span className={style.accentRed}>Учитываются различные аспекты создания игр,</span>
-                            включая тщательную проработку концепции игры, креативного дизайна,
-                            игровых механизмов, коммерческого потенциала проекта.
-                        </div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>
-                        <div className={style.text}>
-                            Использование
-                            <span className={style.accentRed}>уникальной платформы</span>
-                            на базе ВК.Плей и Skillbox
-                        </div>
-                    </div>
+                    {/*<div className={style.card}>*/}
+                    {/*    <img srcSet={new URL('/public/card2.svg', import.meta.url).href} alt={'card2'}/>*/}
+                    {/*    <div className={style.text}>*/}
+                    {/*        Путем оценки и обратной связи от экспертов в индустрии игр*/}
+                    {/*        <span className={style.accentRed}>участники смогут улучшить свои навыки разработки игр</span>*/}
+                    {/*        и получить ценный опыт для будущих проектов.*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className={style.card}>*/}
+                    {/*    <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>*/}
+                    {/*    <div className={style.text}>*/}
+                    {/*        <span className={style.accentRed}>Учитываются различные аспекты создания игр,</span>*/}
+                    {/*        включая тщательную проработку концепции игры, креативного дизайна,*/}
+                    {/*        игровых механизмов, коммерческого потенциала проекта.*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className={style.card}>*/}
+                    {/*    <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>*/}
+                    {/*    <div className={style.text}>*/}
+                    {/*        Использование*/}
+                    {/*        <span className={style.accentRed}>уникальной платформы</span>*/}
+                    {/*        на базе ВК.Плей и Skillbox*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </section>
 
             <section className={style.section}>
                 <h2 className={style.title}>Номинации геймджема</h2>
-                <Blob className={style.blobRight}/>
+                <Blob className={style.blobLeft}/>
                 <div className={clsx(style.cards, style.cardsWrap)}>
                     <div className={style.card}>
                         <img srcSet={new URL('/public/nomination1.svg', import.meta.url).href} alt={'nomination1'}/>
@@ -201,41 +227,7 @@ function Layout() {
                     Люди, имеющие большой бэкграунд
                     в сфере геймдева, которые определят лучших из лучших
                 </div>
-                <div className={clsx(style.cards, style.autoScroll)}>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                </div>
+                    <SliderPersons persons={experts} accentColor={"red"} />
 
             </section>
             <section className={style.section} id={"steps"}>
@@ -297,46 +289,11 @@ function Layout() {
             <section className={style.section}>
                 <h2 className={style.title}><span className={style.accentGreen}
                 >Спикеры</span> мероприятия</h2>
-                <Blob className={style.blobRight}/>
+                <Blob className={style.blobLeft}/>
                 <div className={style.text}>
                     Простите, я не придумал текст к этим крутым чувакам
                 </div>
-                <div className={clsx(style.cards, style.autoScroll)}>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/expert1.svg', import.meta.url).href} alt={'expert1'}/>
-                        <h3>
-                            <span className={style.accentRed}>Фамилия</span>
-                            Имя
-                        </h3>
-                        <div className={style.text}>Должность/достижения</div>
-                    </div>
-                </div>
-
+                <SliderPersons persons={speakers} accentColor={"green"}/>
             </section>
             <section className={style.section} id={"faq"}>
                 <Blob className={style.blobRightFAQ}/>
@@ -358,28 +315,36 @@ function Layout() {
             <footer className={style.footer}>
                 <div className={style.content}>
                     <div className={style.text}>
-                        Получи <span className={style.accentRed}>реальный опыт</span>разработки игры
+                        Получи <span className={style.accentRed}> реальный опыт</span> разработки игры
                     </div>
                     <ul className={style.list}>
-                        <li>
-                            <a href={'#'}>Условия участия</a>
+                        <li >
+                            <a href={'#'} className={style.link}
+                            >Условия участия</a>
                         </li>
                         <li>
-                            <a href={'#'}>Регламент геймджема</a>
+                            <a className={style.link}
+                                href={'#'}>Регламент геймджема</a>
                         </li>
                         <li>
-                            <a className={clsx(style.accentRed, style.link)}
+                            <a className={clsx( style.link, style.accentRed)}
                                href={'#'}>Зарегистрироваться</a>
                         </li>
                     </ul>
 
                 </div>
-                <div className={style.partners}>
-                    <img srcSet={new URL('/public/running1.svg', import.meta.url).href} alt={'running1'}/>
-                    <img srcSet={new URL('/public/running2.svg', import.meta.url).href} alt={'running2'}/>
-                    <img srcSet={new URL('/public/running3.svg', import.meta.url).href} alt={'running3'}/>
-                    <img srcSet={new URL('/public/running4.svg', import.meta.url).href} alt={'running4'}/>
-                    <img srcSet={new URL('/public/running5.svg', import.meta.url).href} alt={'running5'}/>
+                <div className={style.boxLink}>
+                    {Array(1).fill([
+                        {src: '/src/assets/logos/RTUMIREA.svg', alt: 'RTU MIREA'},
+                        {src: '/src/assets/logos/Logo.svg', alt: 'ИГРОВАР'},
+                        {src: '/src/assets/logos/VKPlay.svg', alt: 'VK Play'},
+                        {src: '/src/assets/logos/PROTOTYPE.svg', alt: 'PROTO TYPE'},
+                        {src: '/src/assets/logos/APRIORI.svg', alt: 'APRI ORI'},
+                    ]).flat().map((item, index) => (
+                        <a href="#" key={index} className={style.icon}>
+                            <img src={new URL(item.src, import.meta.url).href} alt={item.alt}/>
+                        </a>
+                    ))}
                 </div>
 
 

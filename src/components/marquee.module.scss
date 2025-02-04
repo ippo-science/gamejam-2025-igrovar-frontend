@@ -2,7 +2,7 @@
   box-sizing: border-box;
   //overflow: hidden;
   position: relative;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   width: clamp(300px, calc(1440 / 1920 * 100vw), 1440px);
   scroll-behavior: smooth;
@@ -10,6 +10,25 @@
 
   display: flex;
   align-items: center;
+  padding: 0 clamp(16px, 2vw, 32px) clamp(28px, calc(50 / 1920 * 100vw + 4px), 54px);
+
+  &:hover::-webkit-scrollbar {
+
+    background-color: var(transparent);
+    height: 4px;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+      background-color: var(--color-accent-green);
+
+  }
+  &:hover::-webkit-scrollbar-track {
+      background-color: #FFFFFF0D;
+      filter: blur(4px);
+  }
+  &:hover{
+    overflow-x: auto;
+    padding: 0 clamp(16px, 2vw, 32px) clamp(24px, calc(50 / 1920 * 100vw), 50px);
+  }
 
   //white-space: nowrap;
   .marquee{
@@ -23,7 +42,7 @@
 
     }
   }
-  .marquee:hover {
+  &:hover .marquee{
     animation-play-state: paused;
   }
   @keyframes marquee-slide {

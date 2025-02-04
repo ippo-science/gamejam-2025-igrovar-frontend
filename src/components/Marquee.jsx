@@ -14,11 +14,11 @@ function Marquee() {
             className={clsx(style.marquee)}>
           {/* Дублированный контент для плавного зацикливания */}
           {Array(2).fill([
-            {src: '/src/assets/RTUMIREA.svg', alt: 'RTU MIREA'},
-            {src: '/src/assets/Logo.svg', alt: 'ИГРОВАР'},
-            {src: '/src/assets/VKPlay.svg', alt: 'VK Play'},
-            {src: '/src/assets/PROTOTYPE.svg', alt: 'PROTO TYPE'},
-            {src: '/src/assets/APRIORI.svg', alt: 'APRI ORI'},
+            {src: '/src/assets/logos/RTUMIREA.svg', alt: 'RTU MIREA'},
+            {src: '/src/assets/logos/Logo.svg', alt: 'ИГРОВАР'},
+            {src: '/src/assets/logos/VKPlay.svg', alt: 'VK Play'},
+            {src: '/src/assets/logos/PROTOTYPE.svg', alt: 'PROTO TYPE'},
+            {src: '/src/assets/logos/APRIORI.svg', alt: 'APRI ORI'},
           ]).flat().map((item, index) => (
               <a href="#" key={index} className={style.icon}>
                 <img src={new URL(item.src, import.meta.url).href} alt={item.alt}/>
