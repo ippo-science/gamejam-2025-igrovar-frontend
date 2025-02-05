@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 
 
-function Marquee() {
+function Marquee({stopAnimation=false}) {
 
   return (
       <div className={style.marqueeWrapper}
@@ -11,7 +11,7 @@ function Marquee() {
       >
         <div
 
-            className={clsx(style.marquee)}>
+            className={clsx(style.marquee, stopAnimation && style.stopAnimation)}>
           {/* Дублированный контент для плавного зацикливания */}
           {Array(2).fill([
             {src: '/src/assets/logos/RTUMIREA.svg', alt: 'RTU MIREA'},

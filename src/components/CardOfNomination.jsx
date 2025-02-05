@@ -1,10 +1,23 @@
-import style from './blob.module.scss';
-import clsx from "clsx";
+import style from './cardNom.module.scss';
 
 
-function Blob({className}) {
+
+
+function CardOfNomination
+({id, title, description}) {
   return (
-    <div className={clsx(style.blob, className)}></div>
+      <div className={style.card}>
+          <div className={style.container}>
+              <div className={style.title}>{title}</div>
+              <img srcSet={new URL(`/public/nom/IconBack-${id}.svg`, import.meta.url).href}
+                   className={style.image}
+                   alt={''}/>
+
+          </div>
+          <div className={style.text}>{description}</div>
+
+      </div>
   );
 }
-export default Blob;
+
+export default CardOfNomination

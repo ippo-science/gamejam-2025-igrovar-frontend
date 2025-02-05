@@ -16,7 +16,7 @@ function SliderPersons({ persons, accentColor }) {
             count++;
 
         }
-        console.log(count, containerWidth, cardWidth, gap);
+        // console.log(count, containerWidth, cardWidth, gap);
         return count >  0 ? count : 1;
     };
 

@@ -45,6 +45,9 @@
   &:hover .marquee{
     animation-play-state: paused;
   }
+  .stopAnimation{
+    animation-play-state: paused;
+  }
   @keyframes marquee-slide {
     from {
       transform: translateX(0%);

@@ -7,6 +7,7 @@ import CardFAQ from "./CardFAQ.jsx";
 
 import SliderPersons from "./SliderPersons.jsx";
 import CardUniqOfJam from "./CardUniqOfJam.jsx";
+import CardOfNomination from "./CardOfNomination.jsx";
 const api = import.meta.env.VITE_API_URL + '/api';
 const dateStart = new Date('2025-02-24T00:00:00');
 const anonsDate = new Date('2025-01-03T00:00:00');
@@ -16,7 +17,7 @@ function Layout() {
     const [nominations, setNominations] = useState(null);
     const [faqs, setFaqs] = useState(null);
     // const [rewards, setRewards] = useState(null);
-
+    const [checked, setChecked] = useState(false);
 
 
 
@@ -108,7 +109,13 @@ function Layout() {
                 <Blob className={style.blobTop}/>
 
                 <nav className={style.nav}>
-                    <ul className={style.menu}>
+                    <input type={"checkbox"} id={"toggle"} className={style.toggleCheckbox}
+                            checked={checked} onChange={() => setChecked(!checked)}
+                    />
+                    <label htmlFor={"toggle"} className={clsx(style.menuToggle, style.menuIcon)}>
+                        <span></span>
+                    </label>
+                    <ul className={style.menu} onClick={() => setChecked(false)}>
                         <li className={style.menuItem}>
                             <a href="#description" className={style.link}>О проекте</a>
                         </li>
@@ -123,10 +130,7 @@ function Layout() {
                             <a href="#faq" className={style.link}>FAQ</a>
                         </li>
                     </ul>
-                    <input type={"checkbox"} id={"toggle"} className={style.toggleCheckbox}/>
-                    <label htmlFor={"toggle"} className={clsx(style.menuToggle, style.menuIcon)}>
-                        <span></span>
-                    </label>
+
                     <div className={style.boxLink}>
                         <a href={"#"} className={style.icon}>
                             {/*todo real link*/}
@@ -134,7 +138,8 @@ function Layout() {
                         </a>
                         <a href={"#"} className={style.icon}>
                             {/*todo real link*/}
-                            <img srcSet={new URL('/src/assets/logos/Telegram.svg', import.meta.url).href} alt={'Telegram'}/>
+                            <img srcSet={new URL('/src/assets/logos/Telegram.svg', import.meta.url).href}
+                                 alt={'Telegram'}/>
                         </a>
                     </div>
                 </nav>
@@ -157,7 +162,7 @@ function Layout() {
 
                         </div>
                     </div>
-                    <Marquee/>
+                    <Marquee stopAnimation={checked}/>
 
                 </div>
             </header>
@@ -189,26 +194,9 @@ function Layout() {
                 <h2 className={style.title}>Номинации геймджема</h2>
                 <Blob className={style.blobLeft}/>
                 <div className={clsx(style.cards, style.cardsWrap)}>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/nomination1.svg', import.meta.url).href} alt={'nomination1'}/>
-                        <h3>Лучший из лучших</h3>
-                        <div className={style.text}>Краткое описание номинации</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/nomination2.svg', import.meta.url).href} alt={'nomination2'}/>
-                        <h3>Я бы в это поиграл</h3>
-                        <div className={style.text}>Краткое описание номинации</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/nomination3.svg', import.meta.url).href} alt={'nomination3'}/>
-                        <h3>Лучшая игра</h3>
-                        <div className={style.text}>Краткое описание номинации</div>
-                    </div>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/nomination4.svg', import.meta.url).href} alt={'nomination4'}/>
-                        <h3>Лучший бизнес</h3>
-                        <div className={style.text}>Краткое описание номинации</div>
-                    </div>
+                    {Array.isArray(nominations) && nominations.map((nomination, index) => (
+                        <CardOfNomination key={index} id={nomination.id} title={nomination.title} description={nomination.description}/>
+                    ))}
                 </div>
             </section>
 

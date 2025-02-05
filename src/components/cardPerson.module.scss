@@ -11,6 +11,7 @@
     --height: clamp(172px, 223 / 1920 * 100vw, 223px);
     width: var(--height);
     height: var(--height);
+    flex-shrink: 0;
 
     object-fit: cover;
     object-position: center;
@@ -91,6 +92,7 @@
   position: relative;
   width: 100%;
   .slideList {
+    //
     display: flex;
     justify-content: center;
     height: 100%;
