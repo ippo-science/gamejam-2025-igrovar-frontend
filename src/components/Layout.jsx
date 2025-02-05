@@ -8,6 +8,7 @@ import CardFAQ from "./CardFAQ.jsx";
 import SliderPersons from "./SliderPersons.jsx";
 import CardUniqOfJam from "./CardUniqOfJam.jsx";
 import CardOfNomination from "./CardOfNomination.jsx";
+import CardForMap from "./CardForMap.jsx";
 const api = import.meta.env.VITE_API_URL + '/api';
 const dateStart = new Date('2025-02-24T00:00:00');
 const anonsDate = new Date('2025-01-03T00:00:00');
@@ -108,7 +109,7 @@ function Layout() {
                 <Blob className={style.blobLeft}/>
                 <Blob className={style.blobTop}/>
 
-                <nav className={style.nav}>
+                <nav className={clsx(style.nav, checked && style.navActive)}>
                     <input type={"checkbox"} id={"toggle"} className={style.toggleCheckbox}
                             checked={checked} onChange={() => setChecked(!checked)}
                     />
@@ -214,56 +215,24 @@ function Layout() {
                 <h2 className={style.title}>Этапы проведения</h2>
                 <Blob className={style.blobRight}/>
                 <div className={style.map}>
+                    <CardForMap title={"10 февраля - 23 февраля"} subtitle={"Подготовка к геймджему"}
+                                listItems={["Регистрация команд;", "Онлайн мастер-классы;", "Трансляции с капитанами команд."]}/>
+                    <CardForMap title={"24 февраля"} subtitle={"Открытие геймджема"}
+                                listItems={["Научная конференция по Игровой Индустрии;", "Запуск голосования за тематику джема."]}/>
+
+                    <CardForMap title={"24 февраля - 3 марта"} subtitle={"Разработка игры"}
+                                listItems={["Консультация по геймплею;", "Консультация по ГДД;", "Трансляция дневников разработчиков."]}/>
+                    <CardForMap title={"3 марта - 9 марта"} subtitle={"Анализ и оценка работ"}
+                                listItems={["Питч-стримы команд;", "Открытие зрительского голосования за лучший проект."]}/>
+                    <CardForMap title={"10 марта"} subtitle={"Закрытие геймджема"}
+                                isLast={true}
+                                listItems={["Питч финалистов;", "Закрытие зрительского голосования;", "Нетворкинг;", "Объявление победителей!"]}/>
+
                     <div className={style.card}>
-                        <div>10 февраля - 23 февраля</div>
-                        <h3>Подготовка к геймджему</h3>
-                        <ul>
-                            <li>Регистрация команд;</li>
-                            <li>Онлайн мастер-классы;</li>
-                            <li>Трансляции с капитанами команд.</li>
-                        </ul>
+                        <img srcSet={new URL('/public/coworking.png', import.meta.url).href} alt={''}/>
+                        <h3 className={style.text}>РТУ МИРЭА</h3>
+                        <div className={style.text}>Пр-кт Вернадского, 78с1</div>
                     </div>
-                    <div className={style.card}>
-                        <div>10 февраля - 23 февраля</div>
-                        <h3>Подготовка к геймджему</h3>
-                        <ul>
-                            <li>Регистрация команд;</li>
-                            <li>Онлайн мастер-классы;</li>
-                            <li>Трансляции с капитанами команд.</li>
-                        </ul>
-                    </div>
-                    <div className={style.card}>
-                        <div>10 февраля - 23 февраля</div>
-                        <h3>Подготовка к геймджему</h3>
-                        <ul>
-                            <li>Регистрация команд;</li>
-                            <li>Онлайн мастер-классы;</li>
-                            <li>Трансляции с капитанами команд.</li>
-                        </ul>
-                    </div>
-                    <div className={style.card}>
-                        <div>10 февраля - 23 февраля</div>
-                        <h3>Подготовка к геймджему</h3>
-                        <ul>
-                            <li>Регистрация команд;</li>
-                            <li>Онлайн мастер-классы;</li>
-                            <li>Трансляции с капитанами команд.</li>
-                        </ul>
-                    </div>
-                    <div className={style.card}>
-                        <div>10 февраля - 23 февраля</div>
-                        <h3>Подготовка к геймджему</h3>
-                        <ul>
-                            <li>Регистрация команд;</li>
-                            <li>Онлайн мастер-классы;</li>
-                            <li>Трансляции с капитанами команд.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div className={style.card}>
-                    <img srcSet={new URL('/public/running1.svg', import.meta.url).href} alt={'running1'}/>
-                    <h3>РТУ МИРЭА</h3>
-                    <div className={style.text}>Пр-кт Вернадского, 78с1</div>
                 </div>
             </section>
             <section className={style.section}>
