@@ -2,17 +2,13 @@ import style from './cardPerson.module.scss';
 import clsx from "clsx";
 import React from "react";
 
-const person = {
-    "first_name": "",
-    "last_name": "",
-    "image": "",
-    "description": ""
-}
 
-const CardPerson = (({ first_name=person.first_name,
-                      last_name=person.last_name,
-                      image=person.image,
-                      description=person.description,
+
+const CardPerson = (({ first_name="",
+                      last_name="",
+                      photo_url="",
+                      bio="",
+                        achievements="",
                         accentColor="red"
                     }) => {
 
@@ -20,7 +16,7 @@ const CardPerson = (({ first_name=person.first_name,
       <div className={clsx(style.card, style[accentColor], "card")}>
         <img
             className={style.image}
-            src={image}
+            src={photo_url}
             alt={""}
         />
 
@@ -30,8 +26,10 @@ const CardPerson = (({ first_name=person.first_name,
             <div className={style.title}
             >{last_name}</div>
 
-        <div className={style.description}>{
-            description.length < 25 ? description : description.slice(0, 25) + "..." }</div>
+          {bio && <div className={style.description}>{bio}</div>}
+            {/*bio.length < 40 ? bio : bio.slice(0, 40) + "..." }</div>}*/}
+          {achievements &&<div className={style.description}>{achievements}</div>}
+             {/*achievements.length < 40 ? achievements : achievements.slice(0, 40) + "..." }</div>}*/}
       </div>
   );
 });

@@ -4,14 +4,18 @@ import {useEffect, useState} from "react";
 import Blob from "./Blob.jsx";
 import Marquee from "./Marquee.jsx";
 import CardFAQ from "./CardFAQ.jsx";
-import CardPerson from "./CardPerson.jsx";
+
 import SliderPersons from "./SliderPersons.jsx";
-const api = import.meta.env.VITE_API_URL;
+import CardUniqOfJam from "./CardUniqOfJam.jsx";
+const api = import.meta.env.VITE_API_URL + '/api';
 const dateStart = new Date('2025-02-24T00:00:00');
 const anonsDate = new Date('2025-01-03T00:00:00');
 function Layout() {
     const [experts, setExperts] = useState(null);
     const [speakers, setSpeakers] = useState(null);
+    const [nominations, setNominations] = useState(null);
+    const [faqs, setFaqs] = useState(null);
+    // const [rewards, setRewards] = useState(null);
 
 
 
@@ -75,17 +79,21 @@ function Layout() {
     }, [])
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (url, setArray) => {
             try {
-                const response = await fetch(api + '/main');
+                const response = await fetch(api + url);
                 const data = await response.json();
-                setExperts(data.experts);
-                setSpeakers(data.speakers);
+                setArray(data);
             } catch (error) {
                 console.error(error);
             }
         };
-        fetchData();
+        fetchData('/experts', setExperts);
+        fetchData('/speakers', setSpeakers);
+        fetchData('/nominations', setNominations);
+        fetchData('/qa', setFaqs);
+        // fetchData('/rewards', setRewards);
+
     }, []);
 
 
@@ -157,39 +165,23 @@ function Layout() {
             <section className={style.section} id={"description"}>
                 <h2 className={clsx(style.title, style.title2)}>Уникальность геймджема</h2>
                 <div className={style.cards}>
-                    <div className={style.card}>
-                        <img srcSet={new URL('/public/card1.svg', import.meta.url).href} alt={'card1'}/>
-                        <div className={style.text}>
-                            Мероприятие,
-                            <span className={style.accentRed}>объединяющее оценку геймдизайн-документов,
-                                качества созданных игр и подходов к бизнес-планированию</span>
-                            в игровой индустрии.
-                        </div>
-                    </div>
-                    {/*<div className={style.card}>*/}
-                    {/*    <img srcSet={new URL('/public/card2.svg', import.meta.url).href} alt={'card2'}/>*/}
-                    {/*    <div className={style.text}>*/}
-                    {/*        Путем оценки и обратной связи от экспертов в индустрии игр*/}
-                    {/*        <span className={style.accentRed}>участники смогут улучшить свои навыки разработки игр</span>*/}
-                    {/*        и получить ценный опыт для будущих проектов.*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className={style.card}>*/}
-                    {/*    <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>*/}
-                    {/*    <div className={style.text}>*/}
-                    {/*        <span className={style.accentRed}>Учитываются различные аспекты создания игр,</span>*/}
-                    {/*        включая тщательную проработку концепции игры, креативного дизайна,*/}
-                    {/*        игровых механизмов, коммерческого потенциала проекта.*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className={style.card}>*/}
-                    {/*    <img srcSet={new URL('/public/card3.svg', import.meta.url).href} alt={'card3'}/>*/}
-                    {/*    <div className={style.text}>*/}
-                    {/*        Использование*/}
-                    {/*        <span className={style.accentRed}>уникальной платформы</span>*/}
-                    {/*        на базе ВК.Плей и Skillbox*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+
+                    <CardUniqOfJam id_card={1} textBefore={"Мероприятие,"}
+                                        textAccent={"объединяющее оценку геймдизайн-документов, " +
+                                            "качества созданных игр и подходов к бизнес-планированию"}
+                                        textAfter={"в игровой индустрии."}/>
+                    <CardUniqOfJam id_card={2} textBefore={"Путем оценки и обратной связи от экспертов в индустрии игр"}
+                                      textAccent={"участники смогут улучшить свои навыки разработки игр"}
+                                        textAfter={"и получить ценный опыт для будущих проектов."}/>
+                    <CardUniqOfJam id_card={3} textAccent={"Учитываются различные аспекты создания игр," }
+                    textAfter={"включая тщательную проработку концепции игры, креативного дизайна," +
+                                        "игровых механизмов, коммерческого потенциала проекта."}/>
+                    <CardUniqOfJam id_card={4} textBefore={"Использование"}
+                                        textAccent={"уникальной платформы"}
+                                        textAfter={"на базе ВК.Плей и Skillbox"}/>
+
+
+
                 </div>
             </section>
 
@@ -304,10 +296,9 @@ function Layout() {
                 >Положении о геймджеме</a></div>
 
                 <div className={clsx(style.cards, style.cardsColumn)}>
-                    <CardFAQ question={"Как принять участие в геймджеме?"}
-                             answer={"Для участия в геймджеме необходимо зарегистрироваться на сайте и создать команду. После этого вы сможете приступить к разработке игры."}/>
-                    <CardFAQ question={"Какие номинации есть на геймджеме?"}
-                                answer={"Краткий ответ на вопрос"}/>
+                    {Array.isArray(faqs) && faqs.map((faq, index) => (
+                        <CardFAQ key={index} question={faq.question} answer={faq.answer}/>
+                    ))}
 
                 </div>
 

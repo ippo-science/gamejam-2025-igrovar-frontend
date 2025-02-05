@@ -68,11 +68,11 @@
 .button{
   position: absolute;
   &.buttonLeft{
-    top: calc(50% + clamp(20px, calc(40 / 1920 * 100vw), 40px));
+    top: calc(50% );
     left: calc(-1 * clamp(30px, calc(40 / 1920 * 100vw), 64px));
   }
   &.buttonRight{
-    top: calc(50% + clamp(20px, calc(45 / 1920 * 100vw), 45px));
+    top: calc(50% );
     right: calc(-1 * clamp(30px, calc(40 / 1920 * 100vw), 64px));
     transform: rotate(180deg);
   }
@@ -86,10 +86,13 @@
   cursor: pointer;
 }
 .slider {
+  padding: 0 0 clamp(24px, calc(50 / 1920 * 100vw), 50px);
+
   position: relative;
   width: 100%;
   .slideList {
     display: flex;
+    justify-content: center;
     height: 100%;
     transition: transform 0.5s ease-in-out;
     gap: clamp(40px, calc(128 / 1920 * 100vw), 128px);

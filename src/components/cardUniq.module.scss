@@ -1,0 +1,52 @@
+.card{
+  box-sizing: border-box;
+  display: flex;
+    flex-direction: column;
+    //justify-content: flex-end;
+    align-items: center;
+    width: 345px;
+    height: 278px;
+  position: relative;
+  padding: 86px 0 0;
+  .image{
+    position: absolute;
+    top: 0;
+    margin: 0 auto;
+    --height: 150px;
+    width: auto;
+    z-index: -1;
+    height: var(--height);
+    object-fit: cover;
+    object-position: center;
+    //filter: blur(5px);
+
+  }
+  .text{
+
+    text-align: center;
+    font: var(--font-text-5);
+    color: var(--color-secondary);
+  }
+  .accentRed{
+    color: var(--color-accent-red);
+  }
+  @media (max-width: 768px){
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    padding: 0 0 0 54px;
+
+    .image{
+      --height: 75px;
+      top: 62px;
+      left: 0px;
+    }
+    .text{
+      font: var(--font-text-5);
+      width: 225px;
+
+    }
+  }
+
+
+}
