@@ -8,4 +8,10 @@ export default defineConfig({
   server: {
     allowedHosts: ['igrovar.ru', 'игровар.рф', 'igrovar.online']
   },
+  proxy: {
+    '/api': {
+      target: 'https://igrovar.ru',
+      changeOrigin: true,
+      secure: false
+    }
 })
