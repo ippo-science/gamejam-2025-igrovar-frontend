@@ -4,14 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  host: '0.0.0.0',
   server: {
-    allowedHosts: ['igrovar.ru', 'игровар.рф', 'igrovar.online']
+    allowedHosts: ['igrovar.ru', 'xn--80adct5ald.xn--plai', 'igrovar.online']
   },
-  proxy: {
-    '/api': {
-      target: 'https://igrovar.ru',
-      changeOrigin: true,
-      secure: false
-    }
 })
