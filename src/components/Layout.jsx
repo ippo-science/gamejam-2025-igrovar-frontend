@@ -90,11 +90,105 @@ function Layout() {
                 console.error(error);
             }
         };
-        fetchData('/experts', setExperts);
-        fetchData('/speakers', setSpeakers);
-        fetchData('/nominations', setNominations);
-        fetchData('/qa', setFaqs);
+
+        setExperts([
+            {
+                id: 1,
+                first_name: 'Иван',
+                last_name: 'Иванов',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                bio: 'Инженер-программист, разработчик игр',
+                },
+            {
+                id: 2,
+                first_name: 'Петр',
+                last_name: 'Петров',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                bio: 'Инженер-программист, разработчик игр',
+
+            },
+            {
+                id: 3,
+                first_name: 'Сидор',
+                last_name: 'Сидоров',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                bio: 'Инженер-программист, разработчик игр',
+            }
+
+        ]);
+        setSpeakers([
+            {
+                id: 1,
+                first_name: 'Иван',
+                last_name: 'Иванов',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                achievements: 'Лучший разработчик игр 2021',
+            },
+            {
+                id: 2,
+                first_name: 'Петр',
+                last_name: 'Петров',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                achievements: 'Лучший разработчик игр 2021',
+
+            },
+            {
+                id: 3,
+                first_name: 'Сидор',
+                last_name: 'Сидоров',
+                photo_url: new URL('/public/coworking.png', import.meta.url).href,
+                achievements: 'Лучший разработчик игр 2021',
+            }
+
+        ]);
+        setNominations([
+            {
+                id: 1,
+                title: 'Лучшая игра',
+                description: 'Номинация для самой лучшей игры'
+            },
+            {
+                id: 2,
+                title: 'Лучший геймдизайн',
+                description: 'Номинация для самого лучшего геймдизайна'
+            },
+            {
+                id: 3,
+                title: 'Лучший бизнес-план',
+                description: 'Номинация для самого лучшего бизнес-плана'
+            },
+            {
+                id: 4,
+                title: 'Лучший арт',
+                description: 'Номинация для самого лучшего арта'
+            }
+        ]);
+
+        setFaqs([
+            {
+                question: 'Как зарегистрироваться?',
+                answer: 'Для регистрации необходимо перейти на сайт и нажать кнопку "Зарегистрироваться"'
+            },
+            {
+                question: 'Как создать команду?',
+                answer: 'Для создания команды необходимо зарегистрироваться и нажать кнопку "Создать команду"'
+            },
+            {
+                question: 'Как принять участие в геймджеме?',
+                answer: 'Для участия в геймджеме необходимо зарегистрироваться на сайте и создать команду. После этого вы сможете приступить к разработке игры.'
+            }]);
+
+
+
+
+
+
+        // fetchData('/experts', setExperts);
+        // fetchData('/speakers', setSpeakers);
+        // fetchData('/nominations', setNominations);
+        // fetchData('/qa', setFaqs);
         // fetchData('/rewards', setRewards);
+
 
     }, []);
 
