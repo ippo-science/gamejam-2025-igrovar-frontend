@@ -96,7 +96,7 @@ function Layout() {
                 id: 1,
                 first_name: 'Александр',
                 last_name: 'Егоров',
-                photo_url: new URL('/public/egorov.png', import.meta.url).href,
+                photo_url: new URL('/public/DSC_7005.jpg', import.meta.url).href,
                 bio: 'Руководитель VK Play Indie, геймдизайнер',
                 },
             {
@@ -109,10 +109,10 @@ function Layout() {
             },
             {
                 id: 3,
-                first_name: 'Сидор',
-                last_name: 'Сидоров',
-                photo_url: new URL('/public/coworking.png', import.meta.url).href,
-                bio: 'Инженер-программист, разработчик игр',
+                first_name: 'Евгений',
+                last_name: 'Медведев',
+                photo_url: new URL('/public/medvedev.jpg', import.meta.url).href,
+                bio: 'Программист, разработчик SPARTA 2035',
             }
 
         ]);
@@ -174,8 +174,12 @@ function Layout() {
                 answer: 'От 1 до 5, так как более 5 призов от партнеров мы вам не найдем'
             },
             {
+                question: 'На финале надо быть очно?',
+                answer: 'Финал смешенного формата, так что если вы из другого города, то можно подключиться и онлайн. Но если есть вомзможность, то ждем вас очно!'
+            },
+            {
                 question: 'Как отправить проект?',
-                answer: 'Отправка проекта доступна на сайте indiehub.ru в разделе с геймджемом ИГРОВАР'
+                answer: 'Отправка проекта доступна на сайте indieHub.ru в разделе с геймджемом ИГРОВАР'
             }]);
 
 
@@ -278,7 +282,7 @@ function Layout() {
                                         "игровых механизмов, коммерческого потенциала проекта."}/>
                     <CardUniqOfJam id_card={4} textBefore={"Использование"}
                                         textAccent={"уникальной платформы"}
-                                        textAfter={"на базе ВК.Плей и Skillbox"}/>
+                                        textAfter={"indieHub"}/>
 
 
 
@@ -309,23 +313,23 @@ function Layout() {
                 <h2 className={style.title}>Этапы проведения</h2>
                 <Blob className={style.blobRight}/>
                 <div className={style.map}>
-                    <CardForMap title={"10 февраля - 23 февраля"} subtitle={"Подготовка к геймджему"}
-                                listItems={["Регистрация команд;", "Онлайн мастер-классы;", "Трансляции с капитанами команд."]}/>
+                    <CardForMap title={"17 февраля - 23 февраля"} subtitle={"Подготовка к геймджему"}
+                                listItems={["Регистрация команд;", "Онлайн мастер-классы;"]}/>
                     <CardForMap title={"24 февраля"} subtitle={"Открытие геймджема"}
-                                listItems={["Научная конференция по Игровой Индустрии;", "Запуск голосования за тематику джема."]}/>
+                                listItems={["Научная конференция по Игровой Индустрии;", "Открытие темы геймджема"]}/>
 
                     <CardForMap title={"24 февраля - 3 марта"} subtitle={"Разработка игры"}
-                                listItems={["Консультация по геймплею;", "Консультация по ГДД;", "Трансляция дневников разработчиков."]}/>
-                    <CardForMap title={"3 марта - 9 марта"} subtitle={"Анализ и оценка работ"}
-                                listItems={["Питч-стримы команд;", "Открытие зрительского голосования за лучший проект."]}/>
+                                listItems={["Консультация с экспертами;", "Трансляция дневников разработчиков."]}/>
+                    <CardForMap title={"4 марта - 16 марта"} subtitle={"Анализ и оценка работ"}
+                                listItems={["Оценка игр экспертами", "Открытие зрительского голосования за лучший проект."]}/>
                     <CardForMap title={"10 марта"} subtitle={"Закрытие геймджема"}
                                 isLast={true}
-                                listItems={["Питч финалистов;", "Закрытие зрительского голосования;", "Нетворкинг;", "Объявление победителей!"]}/>
+                                listItems={["Питч финалистов;", "Нетворкинг;", "Объявление победителей!"]}/>
 
                     <div className={style.card}>
                         <img srcSet={new URL('/public/coworking.png', import.meta.url).href} alt={''}/>
                         <h3 className={style.text}>РТУ МИРЭА</h3>
-                        <div className={style.text}>Пр-кт Вернадского, 78с1</div>
+                        <div className={style.text}>Москва, Пр-кт Вернадского, 78с1</div>
                     </div>
                 </div>
             </section>
@@ -334,7 +338,7 @@ function Layout() {
                 >Спикеры</span> мероприятия</h2>
                 <Blob className={style.blobLeft}/>
                 <div className={style.text}>
-                    Простите, я не придумал текст к этим крутым чувакам
+                    Они слишком круты, чтобы мы смогли подобрать текст
                 </div>
                 <SliderPersons persons={speakers} accentColor={"green"}/>
             </section>
@@ -343,7 +347,7 @@ function Layout() {
                 <h2 className={style.title}>Часто задаваемые вопросы</h2>
                 <div className={style.text}>
                     Ознакомиться подробнее с порядком проведения
-                    мероприятия можно в <a className={style.accentGreen} href={"#"}
+                    мероприятия можно в <a className={style.accentGreen} href={"https://vk.com/doc-229388188_684743066?hash=fbxAn9UCZoVNSxn5KSpYZrUjZPd0oNvx8dw28kAZk3o&dl=cYeEF8QlcybelkN57usMFkXQzxSME02X0Lo71GsOo5w"}
                 >Положении о геймджеме</a></div>
 
                 <div className={clsx(style.cards, style.cardsColumn)}>
@@ -366,11 +370,11 @@ function Layout() {
                         </li>
                         <li>
                             <a className={style.link}
-                                href={'#'}>Регламент геймджема</a>
+                                href={'https://vk.com/doc-229388188_684743066?hash=fbxAn9UCZoVNSxn5KSpYZrUjZPd0oNvx8dw28kAZk3o&dl=cYeEF8QlcybelkN57usMFkXQzxSME02X0Lo71GsOo5w'}>Регламент геймджема</a>
                         </li>
                         <li>
                             <a className={clsx( style.link, style.accentRed)}
-                               href={'#'}>Зарегистрироваться</a>
+                               href={'https://indiehub.ru/jam/?id=18'}>Зарегистрироваться</a>
                         </li>
                     </ul>
 
