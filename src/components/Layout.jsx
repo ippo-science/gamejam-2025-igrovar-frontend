@@ -94,10 +94,10 @@ function Layout() {
         setExperts([
             {
                 id: 1,
-                first_name: 'Иван',
-                last_name: 'Иванов',
-                photo_url: new URL('/public/coworking.png', import.meta.url).href,
-                bio: 'Инженер-программист, разработчик игр',
+                first_name: 'Александр',
+                last_name: 'Егоров',
+                photo_url: new URL('/public/egorov.png', import.meta.url).href,
+                bio: 'Руководитель VK Play Indie, геймдизайнер',
                 },
             {
                 id: 2,
@@ -119,10 +119,10 @@ function Layout() {
         setSpeakers([
             {
                 id: 1,
-                first_name: 'Иван',
-                last_name: 'Иванов',
-                photo_url: new URL('/public/coworking.png', import.meta.url).href,
-                achievements: 'Лучший разработчик игр 2021',
+                first_name: 'Александр',
+                last_name: 'Егоров',
+                photo_url: new URL('/public/egorov.png', import.meta.url).href,
+                achievements: 'Руководитель VK Play Indie, геймдизайнер',
             },
             {
                 id: 2,
@@ -144,8 +144,8 @@ function Layout() {
         setNominations([
             {
                 id: 1,
-                title: 'Лучшая игра',
-                description: 'Номинация для самой лучшей игры'
+                title: 'Лучший из лучших',
+                description: 'Номинация с абсолютным победителем'
             },
             {
                 id: 2,
@@ -154,28 +154,28 @@ function Layout() {
             },
             {
                 id: 3,
-                title: 'Лучший бизнес-план',
-                description: 'Номинация для самого лучшего бизнес-плана'
+                title: 'Лучшая монетизация',
+                description: 'Эти люди знают как получить денежки'
             },
             {
                 id: 4,
-                title: 'Лучший арт',
-                description: 'Номинация для самого лучшего арта'
+                title: 'Ура, я в телевизоре',
+                description: 'Специальная номинация от стримера'
             }
         ]);
 
         setFaqs([
             {
                 question: 'Как зарегистрироваться?',
-                answer: 'Для регистрации необходимо перейти на сайт и нажать кнопку "Зарегистрироваться"'
+                answer: 'Для регистрации необходимо перейти на сайт indiehub.ru, найти джем ИГРОВАР и нажать кнопку "Зарегистрироваться"'
             },
             {
-                question: 'Как создать команду?',
-                answer: 'Для создания команды необходимо зарегистрироваться и нажать кнопку "Создать команду"'
+                question: 'Сколько человек может быть в команде',
+                answer: 'От 1 до 5, так как более 5 призов от партнеров мы вам не найдем'
             },
             {
-                question: 'Как принять участие в геймджеме?',
-                answer: 'Для участия в геймджеме необходимо зарегистрироваться на сайте и создать команду. После этого вы сможете приступить к разработке игры.'
+                question: 'Как отправить проект?',
+                answer: 'Отправка проекта доступна на сайте indiehub.ru в разделе с геймджемом ИГРОВАР'
             }]);
 
 
