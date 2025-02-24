@@ -32,27 +32,37 @@ function Layout() {
                 minutes: Math.floor((difference / 1000 / 60) % 60),
                 seconds: Math.floor((difference / 1000) % 60)
             };
+        } else {
+            timeBeforeStart = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0
+            }
+
         }
         return timeBeforeStart;
     };
+    const widthItem = Math.min(Math.max(Math.floor((32) / 1920 * document.body.clientWidth),
+        24), 64);
+
+    const widthLine = Math.min(Math.max(Math.floor((1440) / 1920 * document.body.clientWidth),
+        300), 1440);
+    const _count = Math.floor(widthLine / (widthItem + 2));
+
     function getCountOfProgressItems() {
         const difference = +dateStart - +anonsDate;
         const now = +new Date() - +anonsDate;
-
-        if (difference <= 0) {
-            return 30;
+        if (dateStart <= new Date()) {
+            return _count;
         } else {
-            return Math.floor(now / (difference / 30));
+            return Math.floor((now / difference) * _count);
         }
     }
     const [beforeStart, setBeforeStart] = useState(calculateTimeBeforeStart());
     const [progressItems, setProgressItems] = useState([]);
     let count = progressItems.length;
     useEffect(() => {
-
-
-
-
 
         function smooth (e) {
             e.preventDefault();
@@ -62,14 +72,23 @@ function Layout() {
             anchor.addEventListener('click', smooth);
         });
         const interval1 = setInterval(() => {
+            // console.log(count, "interval1");
             if (count < getCountOfProgressItems()) {
                 // console.log(count);
                 count ++;
                 setProgressItems(prev => [...prev, 0]);
+            } else {
+                clearInterval(interval1);
             }
         }, 500);
         const interval2 = setInterval(() => {
-            setBeforeStart(calculateTimeBeforeStart());
+            const timeBeforeStart = calculateTimeBeforeStart();
+            setBeforeStart(timeBeforeStart);
+            // console.log(timeBeforeStart);
+            if (timeBeforeStart.days === 0 && timeBeforeStart.hours === 0 && timeBeforeStart.minutes === 0 && timeBeforeStart.seconds === 0) {
+                clearInterval(interval2);
+            }
+
         }, 1000);
         return () => {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
